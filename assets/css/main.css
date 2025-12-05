@@ -1,3 +1,16 @@
+/* CSS-переменные для пастельных цветов и отступов */
+:root {
+    --color-bg-light: #FAFAFA;       
+    --color-card-bg: #FFFFFF;        
+    --color-text-main: #333333;      
+    --color-primary: #81C784;        
+    --color-secondary: #FFCCBC;      
+    --color-border: #E0E0E0;         
+    --padding-base: 15px;
+    --margin-section: 20px;
+    --border-radius: 8px;
+}
+
 /* Базовый сброс стилей */
 * {
     box-sizing: border-box;
@@ -9,4 +22,48 @@
 body {
     background-color: #FAFAFA; /* Светлый фон, как в дизайне */
     padding: 20px;
+}
+
+/* Контейнер приложения */
+#app-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-section);
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: var(--padding-base);
+}
+
+/* Стиль для всех карточек (блоков) */
+.card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--padding-base) 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+}
+
+/* Стили для верхнего ряда (Персонаж + Навыки) */
+.top-row {
+    display: flex;
+    gap: var(--margin-section);
+}
+
+/* Карточка персонажа и Навыков делят место, как на вайрфрейме */
+#character-card {
+    flex: 0 0 30%; 
+}
+
+#skills-card {
+    flex: 1; 
+}
+
+/* Медиа-запрос для мобильных */
+@media (max-width: 800px) {
+    .top-row {
+        flex-direction: column;
+    }
+    #character-card {
+        flex: 1; 
+    }
 }
