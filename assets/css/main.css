@@ -1,0 +1,12 @@
+/* Базовый сброс стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif; /* Временно, пока не выберем шрифт */
+}
+
+body {
+    background-color: #FAFAFA; /* Светлый фон, как в дизайне */
+    padding: 20px;
+}
