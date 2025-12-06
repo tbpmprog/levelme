@@ -48,6 +48,16 @@ const NEW_USER_TEMPLATE = {
     recurringTasks: []
 };
 
+// Шаблон для Новой Группы
+const NEW_GROUP_TEMPLATE = {
+    groupId: null,
+    name: null,
+    leaderId: null,
+    members: [],
+    tasks: [],
+    createdAt: null
+};
+
 // Экспорт
 export const DataModel = {
     getInitialDataShell: () => structuredClone(INITIAL_DATA_SHELL),
@@ -59,6 +69,16 @@ export const DataModel = {
         template.passwordHash = password;
         return template;
     },
+
+    getNewGroupTemplate: (groupId, name, leaderId) => {
+        const template = structuredClone(NEW_GROUP_TEMPLATE);
+        template.groupId = groupId;
+        template.name = name;
+        template.leaderId = leaderId;
+        template.members = [leaderId];
+        template.createdAt = Date.now();
+        return template;
+    }
 
     SESSION_DURATION_MS
 };

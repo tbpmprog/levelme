@@ -66,7 +66,7 @@ $(document).ready(function() {
     // Логика инициализации
     if (!appData) {
         // 1. Создаем новые данные из шаблона
-        appData = DataModel.getInitialData();
+        appData = DataModel.getInitialDataShell();
         // 2. Сохраняем их в LocalStorage
         Storage.saveData(appData);
         console.log("LevelMe: Первый запуск. Создана новая структура данных.");
