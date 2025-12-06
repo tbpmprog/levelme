@@ -1,22 +1,21 @@
 // Ключ, под которым будут храниться наши данные в LocalStorage.
-// Это наш "контейнер" для проекта LevelMe.
 const STORAGE_KEY = 'levelme_data';
 
-// 1. Загрузка данных
+// Загрузка данных
 function loadData() {
     const data = localStorage.getItem(STORAGE_KEY);
     if (data) {
         try {
             return JSON.parse(data);
         } catch (e) {
-            console.error("Storage Error: Не удалось распарсить данные.", e);
+            console.error("Storage Error: Не удалось распарсить данные из LocalStorage", e);
             return null;
         }
     }
     return null;
 }
 
-// 2. Сохранение данных
+// Сохранение данных
 function saveData(data) {
     if (!data) return false;
 
@@ -26,12 +25,12 @@ function saveData(data) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         return true;
     } catch (e) {
-        console.error("Storage Error: Не удалось сохранить данные.", e);
+        console.error("Storage Error: Не удалось сохранить данные в LocalStorage", e);
         return false;
     }
 }
 
-// --- 3. Экспорт ---
+// Экспорт
 export const Storage = {
     loadData,
     saveData

@@ -1,11 +1,11 @@
 /* CSS-переменные для пастельных цветов и отступов */
 :root {
-    --color-bg-light: #FAFAFA;       
-    --color-card-bg: #FFFFFF;        
-    --color-text-main: #333333;      
-    --color-primary: #81C784;        
-    --color-secondary: #FFCCBC;      
-    --color-border: #E0E0E0;         
+    --color-bg-light: #FAFAFA;
+    --color-card-bg: #FFFFFF;
+    --color-text-main: #333333;
+    --color-primary: #81C784;
+    --color-secondary: #FFCCBC;
+    --color-border: #E0E0E0;
     --padding-base: 15px;
     --margin-section: 20px;
     --border-radius: 8px;
@@ -29,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--margin-section);
-    max-width: 1200px; 
+    max-width: 1200px;
     margin: 0 auto;
     padding: var(--padding-base);
 }
@@ -40,7 +40,7 @@ body {
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: var(--padding-base) 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Стили для верхнего ряда (Персонаж + Навыки) */
@@ -51,11 +51,11 @@ body {
 
 /* Карточка персонажа и Навыков делят место, как на вайрфрейме */
 #character-card {
-    flex: 0 0 30%; 
+    flex: 0 0 30%;
 }
 
 #skills-card {
-    flex: 1; 
+    flex: 1;
 }
 
 /* Стилизация Блока Персонажа */
@@ -72,7 +72,7 @@ body {
     width: 60px;
     height: 60px;
     background-color: var(--color-border);
-    border-radius: 50%; 
+    border-radius: 50%;
     flex-shrink: 0;
 }
 
@@ -89,27 +89,27 @@ body {
 }
 
 .attribute-item label {
-    flex-basis: 35%; 
+    flex-basis: 35%;
     font-weight: 500;
     white-space: nowrap; /* Чтобы длинные названия не переносились */
 }
 
 .progress-bar-container {
-    height: 8px; 
+    height: 8px;
     background-color: #F0F0F0;
     border-radius: 4px;
     overflow: hidden;
-    flex-grow: 1; 
+    flex-grow: 1;
     margin: 0 8px;
 }
 .progress-bar {
     height: 100%;
-    background-color: var(--color-primary); 
+    background-color: var(--color-primary);
     transition: width 0.3s;
 }
 
 .stat-level {
-    flex-basis: 10%; 
+    flex-basis: 10%;
     text-align: right;
     font-weight: bold;
 }
@@ -161,7 +161,7 @@ body {
     background-color: #EFEFEF;
     border-radius: 5px;
     overflow: hidden;
-    flex-grow: 1; 
+    flex-grow: 1;
     margin: 0 8px;
 }
 
@@ -172,7 +172,7 @@ body {
 }
 
 .xp-level {
-    flex-basis: 20%; 
+    flex-basis: 20%;
     text-align: right;
     font-weight: bold;
 }
@@ -183,6 +183,6 @@ body {
         flex-direction: column;
     }
     #character-card {
-        flex: 1; 
+        flex: 1;
     }
 }

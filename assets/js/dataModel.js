@@ -1,26 +1,37 @@
-// --- 1. Определение начальной структуры данных ---
-const INITIAL_DATA = {
-    // Мета-информация о данных
+// Константы для сессии
+const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 дней в миллисекундах
+
+// Определение начальной структуры хранилища
+const INITIAL_DATA_SHELL = {
     meta: {
-        version: '1.0.0',
-        lastUpdated: Date.now()
+        version: '2.0.0',
+        lastUpdated: Date.now(),
+        activeUserId: null
     },
-    // Данные о персонаже (самое главное)
+    users: {},
+    groups: {}
+};
+
+// Шаблон для Нового Пользователя
+const NEW_USER_TEMPLATE = {
+    userId: null,
+    username: null,
+    passwordHash: null,
+    sessionActive: false,
+    sessionExpiry: null,
+    lastLogin: null,
+
     character: {
         name: "Герой LevelMe",
         level: 1,
         coins: 0,
-
-        // 5 Атрибутов (Core Stats)
         attributes: {
-            PHY: { name: "Физическое Здоровье", level: 1, xp: 0, requiredXP: 100 },
-            COG: { name: "Когнитивный Резерв", level: 1, xp: 0, requiredXP: 100 },
+            PHY: { name: "Физическое Здоровье",     level: 1, xp: 0, requiredXP: 100 },
+            COG: { name: "Когнитивный Резерв",      level: 1, xp: 0, requiredXP: 100 },
             EMO: { name: "Эмоциональный Интеллект", level: 1, xp: 0, requiredXP: 100 },
-            PRO: { name: "Продуктивность", level: 1, xp: 0, requiredXP: 100 },
+            PRO: { name: "Продуктивность",          level: 1, xp: 0, requiredXP: 100 },
             FIN: { name: "Финансовая Устойчивость", level: 1, xp: 0, requiredXP: 100 }
         },
-
-        // 8 Универсальных Навыков (Skills)
         skills: {
             willpower:    { name: "Сила Воли",           level: 1, xp: 0, requiredXP: 100, type: 'basic' },
             organization: { name: "Организованность",    level: 1, xp: 0, requiredXP: 100, type: 'basic' },
@@ -31,18 +42,23 @@ const INITIAL_DATA = {
             budgeting:    { name: "Бюджетирование",      level: 1, xp: 0, requiredXP: 100, type: 'basic' },
             investing:    { name: "Инвестирование",      level: 1, xp: 0, requiredXP: 100, type: 'basic' },
         },
-
-        // Специализированные навыки (пустой объект, заполняется динамически)
         specializations: {}
     },
-
-    // Массивы для будущих данных
     tasks: [],
-    rewards: []
+    recurringTasks: []
 };
 
-// --- 2. Экспорт (для доступа из других файлов) ---
+// Экспорт
 export const DataModel = {
-    // Мы возвращаем копию объекта, чтобы main.js случайно не изменил шаблон
-    getInitialData: () => structuredClone(INITIAL_DATA)
+    getInitialDataShell: () => structuredClone(INITIAL_DATA_SHELL),
+
+    getNewUserTemplate: (userId, username, password) => {
+        const template = structuredClone(NEW_USER_TEMPLATE);
+        template.userId = userId;
+        template.username = username;
+        template.passwordHash = password;
+        return template;
+    },
+
+    SESSION_DURATION_MS
 };
