@@ -58,6 +58,125 @@ body {
     flex: 1; 
 }
 
+/* Стилизация Блока Персонажа */
+.char-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: var(--padding-base);
+    padding-bottom: var(--padding-base);
+    border-bottom: 1px solid var(--color-border); /* Разделитель */
+}
+
+.char-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-border);
+    border-radius: 50%; 
+    flex-shrink: 0;
+}
+
+/* Стиль для полосок характеристик */
+#attributes-list h3 {
+    margin-top: var(--padding-base);
+}
+
+.attribute-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.attribute-item label {
+    flex-basis: 35%; 
+    font-weight: 500;
+    white-space: nowrap; /* Чтобы длинные названия не переносились */
+}
+
+.progress-bar-container {
+    height: 8px; 
+    background-color: #F0F0F0;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-grow: 1; 
+    margin: 0 8px;
+}
+.progress-bar {
+    height: 100%;
+    background-color: var(--color-primary); 
+    transition: width 0.3s;
+}
+
+.stat-level {
+    flex-basis: 10%; 
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Стиль для Монет (для динамической смены цвета) */
+.coins-negative {
+    color: #F44336; /* Красный */
+    font-weight: bold;
+}
+.coins-positive {
+    color: #4CAF50; /* Зеленый */
+    font-weight: bold;
+}
+
+/* Стилизация Блока Навыков */
+#skills-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Временно один столбец */
+    gap: 20px;
+}
+
+#universal-skills, #specialized-skills {
+    padding-top: 10px;
+}
+
+#universal-skills h4, #specialized-skills h4 {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    border-bottom: 1px dashed var(--color-border);
+    padding-bottom: 5px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.skill-item label {
+    flex-basis: 30%; /* Выравниваем метку */
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* XP-бар в Навыках */
+.xp-bar-container {
+    height: 10px; /* Чуть толще, чем Атрибуты */
+    background-color: #EFEFEF;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-grow: 1; 
+    margin: 0 8px;
+}
+
+.xp-bar {
+    height: 100%;
+    background-color: var(--color-secondary); /* Используем второй цвет для XP */
+    transition: width 0.3s;
+}
+
+.xp-level {
+    flex-basis: 20%; 
+    text-align: right;
+    font-weight: bold;
+}
+
 /* Медиа-запрос для мобильных */
 @media (max-width: 800px) {
     .top-row {

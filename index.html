@@ -10,11 +10,80 @@
     <div id="app-container">
         <div class="top-row">
             <section id="character-card" class="card">
-                <h2>Ваш Персонаж</h2>
+                <div class="char-header">
+                    <div class="char-avatar"></div>
+                    <div>
+                        <h2>Ваш Персонаж</h2>
+                        <p>Общий Уровень: <span id="char-level" class="stat-value">1</span></p>
+                        <p>Монеты: <span id="char-coins" class="stat-value">0</span></p>
+                    </div>
+                </div>
+
+                <h3>Атрибуты</h3>
+                <div id="attributes-list">
+                    <div class="attribute-item" data-stat="phy">
+                        <label>Физическое Здоровье</label>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 10%; background-color: var(--color-primary);"></div></div>
+                        <span class="stat-level">Ур. 1</span>
+                    </div>
+
+                    <div class="attribute-item" data-stat="cog">
+                        <label>Когнитивный Резерв</label>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 50%;"></div></div>
+                        <span class="stat-level">Ур. 1</span>
+                    </div>
+
+                    <div class="attribute-item" data-stat="emo">
+                        <label>Эмоциональный Интеллект</label>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 25%;"></div></div>
+                        <span class="stat-level">Ур. 1</span>
+                    </div>
+
+                    <div class="attribute-item" data-stat="pro">
+                        <label>Продуктивность</label>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div>
+                        <span class="stat-level">Ур. 1</span>
+                    </div>
+
+                    <div class="attribute-item" data-stat="fin">
+                        <label>Финансовая Устойчивость</label>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 40%;"></div></div>
+                        <span class="stat-level">Ур. 1</span>
+                    </div>
+                </div>
             </section>
 
             <section id="skills-card" class="card">
                 <h2>Навыки (XP)</h2>
+                <div id="skills-container">
+                    <div id="universal-skills">
+                        <h4>Универсальные Навыки</h4>
+
+                        <div class="skill-item" data-skill="willpower">
+                            <label>Сила Воли</label>
+                            <div class="xp-bar-container"><div class="xp-bar" style="width: 25%;"></div></div>
+                            <span class="xp-level">Ур. 1 (25 XP)</span>
+                        </div>
+
+                        <div class="skill-item" data-skill="organization">
+                            <label>Организованность</label>
+                            <div class="xp-bar-container"><div class="xp-bar" style="width: 10%;"></div></div>
+                            <span class="xp-level">Ур. 1 (10 XP)</span>
+                        </div>
+
+                        <div class="skill-item" data-skill="learning">
+                            <label>Обучаемость</label>
+                            <div class="xp-bar-container"><div class="xp-bar" style="width: 70%;"></div></div>
+                            <span class="xp-level">Ур. 1 (70 XP)</span>
+                        </div>
+
+                        </div>
+
+                    <div id="specialized-skills">
+                        <h4>Специализированные Навыки</h4>
+                        <p class="placeholder">Пока нет созданных специализаций. Они появятся, когда вы добавите первую задачу с Категорией "Специализация".</p>
+                        </div>
+                </div>
             </section>
         </div>
 
