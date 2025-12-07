@@ -79,6 +79,6 @@ export const DataModel = {
         template.createdAt = Date.now();
         return template;
     }
-
-    SESSION_DURATION_MS
 };
+
+export { SESSION_DURATION_MS };

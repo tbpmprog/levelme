@@ -1,11 +1,14 @@
-/* CSS-переменные для пастельных цветов и отступов */
+/* --- CSS-переменные для пастельных цветов и отступов --- */
 :root {
-    --color-bg-light: #FAFAFA;
-    --color-card-bg: #FFFFFF;
-    --color-text-main: #333333;
-    --color-primary: #81C784;
-    --color-secondary: #FFCCBC;
-    --color-border: #E0E0E0;
+    --color-bg-light: #FAFAFA; /* Фон */
+    --color-card-bg: #FFFFFF; /* Фон карточек */
+    --color-text-main: #333333; /* Основной текст */
+    --color-primary: #81C784; /* Основной цвет (Светло-зеленый) */
+    --color-secondary: #FFCCBC; /* Вторичный цвет (Светло-оранжевый/Персиковый) */
+    --color-border: #E0E0E0; /* Границы */
+    --color-error: #F44336; /* Красный для ошибок */
+    --color-success: #4CAF50; /* Зеленый для успеха */
+    
     --padding-base: 15px;
     --margin-section: 20px;
     --border-radius: 8px;
@@ -16,22 +19,42 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif; /* Временно, пока не выберем шрифт */
+    font-family: sans-serif;
 }
 
 body {
-    background-color: #FAFAFA; /* Светлый фон, как в дизайне */
+    background-color: var(--color-bg-light); 
+}
+
+header {
+    background-color: var(--color-card-bg);
+    padding: 10px var(--padding-base);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--color-primary);
+}
+
+/* Враппер, центрирующий основной контент и авторизацию */
+.main-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Обеспечивает центрирование по высоте */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-/* Контейнер приложения */
+/* Контейнер приложения (сам дашборд) */
 #app-container {
     display: flex;
     flex-direction: column;
     gap: var(--margin-section);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--padding-base);
+    width: 100%;
 }
 
 /* Стиль для всех карточек (блоков) */
@@ -49,7 +72,7 @@ body {
     gap: var(--margin-section);
 }
 
-/* Карточка персонажа и Навыков делят место, как на вайрфрейме */
+/* Карточка персонажа и Навыков делят место */
 #character-card {
     flex: 0 0 30%;
 }
@@ -58,14 +81,14 @@ body {
     flex: 1;
 }
 
-/* Стилизация Блока Персонажа */
+/* --- Стилизация Блока Персонажа --- */
 .char-header {
     display: flex;
     gap: 15px;
     align-items: center;
     margin-bottom: var(--padding-base);
     padding-bottom: var(--padding-base);
-    border-bottom: 1px solid var(--color-border); /* Разделитель */
+    border-bottom: 1px solid var(--color-border);
 }
 
 .char-avatar {
@@ -76,11 +99,11 @@ body {
     flex-shrink: 0;
 }
 
-/* Стиль для полосок характеристик */
-#attributes-list h3 {
-    margin-top: var(--padding-base);
+h2, h3 {
+    color: var(--color-text-main);
 }
 
+/* Стиль для полосок характеристик (Атрибуты) */
 .attribute-item {
     display: flex;
     align-items: center;
@@ -91,7 +114,7 @@ body {
 .attribute-item label {
     flex-basis: 35%;
     font-weight: 500;
-    white-space: nowrap; /* Чтобы длинные названия не переносились */
+    white-space: nowrap;
 }
 
 .progress-bar-container {
@@ -112,27 +135,28 @@ body {
     flex-basis: 10%;
     text-align: right;
     font-weight: bold;
+    color: var(--color-text-secondary);
 }
 
 /* Стиль для Монет (для динамической смены цвета) */
 .coins-negative {
-    color: #F44336; /* Красный */
+    color: var(--color-error); 
     font-weight: bold;
 }
 .coins-positive {
-    color: #4CAF50; /* Зеленый */
+    color: var(--color-success); 
     font-weight: bold;
 }
 
-/* Стилизация Блока Навыков */
+/* --- Стилизация Блока Навыков --- */
 #skills-container {
     display: grid;
-    grid-template-columns: 1fr; /* Временно один столбец */
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
 #universal-skills, #specialized-skills {
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 #universal-skills h4, #specialized-skills h4 {
@@ -150,14 +174,14 @@ body {
 }
 
 .skill-item label {
-    flex-basis: 30%; /* Выравниваем метку */
+    flex-basis: 30%;
     font-weight: 500;
     white-space: nowrap;
 }
 
 /* XP-бар в Навыках */
 .xp-bar-container {
-    height: 10px; /* Чуть толще, чем Атрибуты */
+    height: 10px;
     background-color: #EFEFEF;
     border-radius: 5px;
     overflow: hidden;
@@ -167,7 +191,7 @@ body {
 
 .xp-bar {
     height: 100%;
-    background-color: var(--color-secondary); /* Используем второй цвет для XP */
+    background-color: var(--color-secondary); 
     transition: width 0.3s;
 }
 
@@ -175,9 +199,63 @@ body {
     flex-basis: 20%;
     text-align: right;
     font-weight: bold;
+    color: var(--color-text-secondary);
 }
 
-/* Медиа-запрос для мобильных */
+/* --- Стили для Экрана Аутентификации --- */
+#auth-screen {
+    /* Эти стили обеспечивают, что auth-screen выглядит как главный экран, когда он активен */
+    width: 100%;
+}
+
+.auth-card {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+.auth-card h2 {
+    margin-bottom: 20px;
+    color: var(--color-primary);
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#auth-username, #auth-password {
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    font-size: 1em;
+}
+
+#auth-submit-btn {
+    padding: 12px;
+    background-color: var(--color-secondary); 
+    color: var(--color-text-main);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#auth-submit-btn:hover {
+    background-color: #E6B6A5; 
+}
+
+.error-message {
+    color: var(--color-error);
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* --- Медиа-запрос для мобильных --- */
 @media (max-width: 800px) {
     .top-row {
         flex-direction: column;

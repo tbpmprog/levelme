@@ -7,91 +7,107 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
-    <div id="app-container">
-        <div class="top-row">
-            <section id="character-card" class="card">
-                <div class="char-header">
-                    <div class="char-avatar"></div>
-                    <div>
-                        <h2>Ваш Персонаж</h2>
-                        <p>Общий Уровень: <span id="char-level" class="stat-value">1</span></p>
-                        <p>Монеты: <span id="char-coins" class="stat-value">0</span></p>
-                    </div>
-                </div>
+    <header>
+        <h1>LevelMe</h1>
+        <nav id="user-menu-placeholder"></nav>
+    </header>
 
-                <h3>Атрибуты</h3>
-                <div id="attributes-list">
-                    <div class="attribute-item" data-stat="phy">
-                        <label>Физическое Здоровье</label>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 10%; background-color: var(--color-primary);"></div></div>
-                        <span class="stat-level">Ур. 1</span>
-                    </div>
+    <main class="main-content-wrapper">
+        <div id="auth-screen" style="display: none;">
+            <section class="card auth-card">
+                <h2>Вход и Регистрация</h2>
+                <p>Добро пожаловать! Создайте нового пользователя или войдите.</p>
 
-                    <div class="attribute-item" data-stat="cog">
-                        <label>Когнитивный Резерв</label>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 50%;"></div></div>
-                        <span class="stat-level">Ур. 1</span>
-                    </div>
+                <form id="login-form">
+                    <input type="text" id="auth-username" placeholder="Имя пользователя" required>
+                    <input type="password" id="auth-password" placeholder="Пароль" required>
 
-                    <div class="attribute-item" data-stat="emo">
-                        <label>Эмоциональный Интеллект</label>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 25%;"></div></div>
-                        <span class="stat-level">Ур. 1</span>
-                    </div>
+                    <button type="submit" id="auth-submit-btn">Войти / Зарегистрироваться</button>
+                </form>
 
-                    <div class="attribute-item" data-stat="pro">
-                        <label>Продуктивность</label>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div>
-                        <span class="stat-level">Ур. 1</span>
-                    </div>
-
-                    <div class="attribute-item" data-stat="fin">
-                        <label>Финансовая Устойчивость</label>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 40%;"></div></div>
-                        <span class="stat-level">Ур. 1</span>
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills-card" class="card">
-                <h2>Навыки (XP)</h2>
-                <div id="skills-container">
-                    <div id="universal-skills">
-                        <h4>Универсальные Навыки</h4>
-
-                        <div class="skill-item" data-skill="willpower">
-                            <label>Сила Воли</label>
-                            <div class="xp-bar-container"><div class="xp-bar" style="width: 25%;"></div></div>
-                            <span class="xp-level">Ур. 1 (25 XP)</span>
-                        </div>
-
-                        <div class="skill-item" data-skill="organization">
-                            <label>Организованность</label>
-                            <div class="xp-bar-container"><div class="xp-bar" style="width: 10%;"></div></div>
-                            <span class="xp-level">Ур. 1 (10 XP)</span>
-                        </div>
-
-                        <div class="skill-item" data-skill="learning">
-                            <label>Обучаемость</label>
-                            <div class="xp-bar-container"><div class="xp-bar" style="width: 70%;"></div></div>
-                            <span class="xp-level">Ур. 1 (70 XP)</span>
-                        </div>
-
-                        </div>
-
-                    <div id="specialized-skills">
-                        <h4>Специализированные Навыки</h4>
-                        <p class="placeholder">Пока нет созданных специализаций. Они появятся, когда вы добавите первую задачу с Категорией "Специализация".</p>
-                        </div>
-                </div>
+                <div id="auth-message" class="error-message" style="display: none;"></div>
+                <div id="user-list-container" style="margin-top: 15px;"></div>
             </section>
         </div>
 
-        <section id="tasks-plan-placeholder" class="card">
-            <h2>План Заданий</h2>
-            <p>Здесь будет список задач и навигация по датам. Мы займемся этим позже.</p>
-        </section>
-    </div>
+        <div id="app-container" style="display: none;">
+            <div class="top-row">
+                <section id="character-card" class="card">
+                    <div class="char-header">
+                        <div class="char-avatar"></div>
+                        <div>
+                            <h2>Ваш Персонаж</h2>
+                            <p>Общий Уровень: <span id="char-level" class="stat-value">1</span></p>
+                            <p>Монеты: <span id="char-coins" class="stat-value">0</span></p>
+                        </div>
+                    </div>
+
+                    <h3>Атрибуты</h3>
+                    <div id="attributes-list">
+                        <div class="attribute-item" data-stat="phy">
+                            <label>Физическое Здоровье</label>
+                            <div class="progress-bar-container"><div class="progress-bar" style="width: 10%;"></div></div>
+                            <span class="stat-level">Ур. 1</span>
+                        </div>
+                        <div class="attribute-item" data-stat="cog">
+                            <label>Когнитивный Резерв</label>
+                            <div class="progress-bar-container"><div class="progress-bar" style="width: 50%;"></div></div>
+                            <span class="stat-level">Ур. 1</span>
+                        </div>
+                        <div class="attribute-item" data-stat="emo">
+                            <label>Эмоциональный Интеллект</label>
+                            <div class="progress-bar-container"><div class="progress-bar" style="width: 25%;"></div></div>
+                            <span class="stat-level">Ур. 1</span>
+                        </div>
+                        <div class="attribute-item" data-stat="pro">
+                            <label>Продуктивность</label>
+                            <div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div>
+                            <span class="stat-level">Ур. 1</span>
+                        </div>
+                        <div class="attribute-item" data-stat="fin">
+                            <label>Финансовая Устойчивость</label>
+                            <div class="progress-bar-container"><div class="progress-bar" style="width: 40%;"></div></div>
+                            <span class="stat-level">Ур. 1</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="skills-card" class="card">
+                    <h2>Навыки (XP)</h2>
+                    <div id="skills-container">
+                        <div id="universal-skills">
+                            <h4>Универсальные Навыки</h4>
+                            <div class="skill-item" data-skill="willpower">
+                                <label>Сила Воли</label>
+                                <div class="xp-bar-container"><div class="xp-bar" style="width: 25%;"></div></div>
+                                <span class="xp-level">Ур. 1 (25 XP)</span>
+                            </div>
+                            <div class="skill-item" data-skill="organization">
+                                <label>Организованность</label>
+                                <div class="xp-bar-container"><div class="xp-bar" style="width: 10%;"></div></div>
+                                <span class="xp-level">Ур. 1 (10 XP)</span>
+                            </div>
+                            <div class="skill-item" data-skill="learning">
+                                <label>Обучаемость</label>
+                                <div class="xp-bar-container"><div class="xp-bar" style="width: 70%;"></div></div>
+                                <span class="xp-level">Ур. 1 (70 XP)</span>
+                            </div>
+                        </div>
+
+                        <div id="specialized-skills">
+                            <h4>Специализированные Навыки</h4>
+                            <p class="placeholder">Пока нет созданных специализаций. Они появятся, когда вы добавите первую задачу с Категорией "Специализация".</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section id="tasks-plan-placeholder" class="card">
+                <h2>План Заданий</h2>
+                <p>Здесь будет список задач и навигация по датам. Мы займемся этим позже.</p>
+            </section>
+        </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="module" src="./assets/js/main.js"></script>
