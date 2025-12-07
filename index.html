@@ -102,9 +102,34 @@
                 </section>
             </div>
 
-            <section id="tasks-plan-placeholder" class="card">
+            <section id="task-management" class="card">
+                <div id="add-task-header">
+                    <button id="toggle-add-form-btn">+ Добавить Новое Задание</button>
+                </div>
+
+                <div id="add-task-form-wrapper" style="display: none; margin-top: 15px;">
+                    <form id="new-task-form">
+                        <input type="text" id="task-title" placeholder="Название задачи..." required>
+
+                        <select id="task-category-1" required>
+                            <option value="">Категория</option>
+                            <option value="Работа">Работа</option>
+                            <option value="Учеба">Учеба</option>
+                            <option value="Здоровье">Здоровье</option>
+                            <option value="Спорт">Спорт</option>
+                            <option value="Финансы">Финансы</option>
+                        </select>
+
+                        <button type="submit" id="add-task-button">Создать</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="tasks-plan" class="card">
                 <h2>План Заданий</h2>
-                <p>Здесь будет список задач и навигация по датам. Мы займемся этим позже.</p>
+                <div id="daily-tasks-list">
+                    <p class="placeholder-task">Задач на сегодня нет. Время создать что-то великое!</p>
+                </div>
             </section>
         </div>
     </main>

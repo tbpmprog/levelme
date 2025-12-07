@@ -2,7 +2,7 @@ import { Storage } from './storage.js';
 import { DataModel, SESSION_DURATION_MS } from './dataModel.js';
 
 /**
- * Псевдо-хэширование для демонстрации. 
+ * Псевдо-хэширование для демонстрации.
  * Мы не храним пароль в чистом виде, а создаем из него уникальную строку.
  */
 function hashPassword(password) {
@@ -31,7 +31,7 @@ function displayAuthMessage(message, isError = true) {
  */
 function handleAuth(appData, username, password, onAuthSuccess) {
     const hashed = hashPassword(password);
-    
+
     // Ищем, есть ли уже такой пользователь в словаре
     const existingUser = Object.values(appData.users).find(u => u.username === username);
 
@@ -42,9 +42,9 @@ function handleAuth(appData, username, password, onAuthSuccess) {
             existingUser.sessionActive = true;
             existingUser.sessionExpiry = Date.now() + SESSION_DURATION_MS;
             existingUser.lastLogin = Date.now();
-            
+
             appData.meta.activeUserId = existingUser.userId;
-            
+
             Storage.saveData(appData);
             onAuthSuccess(appData, existingUser.userId);
         } else {
@@ -54,11 +54,11 @@ function handleAuth(appData, username, password, onAuthSuccess) {
         // --- СЦЕНАРИЙ 2: РЕГИСТРАЦИЯ ---
         const newId = generateUserId();
         const newUser = DataModel.getNewUserTemplate(newId, username, hashed);
-        
+
         newUser.sessionActive = true;
         newUser.sessionExpiry = Date.now() + SESSION_DURATION_MS;
         newUser.lastLogin = Date.now();
-        
+
         // Добавляем в глобальное хранилище
         appData.users[newId] = newUser;
         appData.meta.activeUserId = newId;
@@ -78,12 +78,12 @@ function checkActiveSession(appData) {
     if (!userId || !appData.users[userId]) return null;
 
     const user = appData.users[userId];
-    
+
     // Если сессия активна и время не вышло
     if (user.sessionActive && user.sessionExpiry > Date.now()) {
         return userId;
     }
-    
+
     // Иначе сбрасываем состояние
     user.sessionActive = false;
     appData.meta.activeUserId = null;

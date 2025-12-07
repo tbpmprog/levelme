@@ -1,266 +1,213 @@
-/* --- CSS-переменные для пастельных цветов и отступов --- */
+/* --- CSS-переменные --- */
 :root {
-    --color-bg-light: #FAFAFA; /* Фон */
-    --color-card-bg: #FFFFFF; /* Фон карточек */
-    --color-text-main: #333333; /* Основной текст */
-    --color-primary: #81C784; /* Основной цвет (Светло-зеленый) */
-    --color-secondary: #FFCCBC; /* Вторичный цвет (Светло-оранжевый/Персиковый) */
-    --color-border: #E0E0E0; /* Границы */
-    --color-error: #F44336; /* Красный для ошибок */
-    --color-success: #4CAF50; /* Зеленый для успеха */
-    
+    --color-bg-light: #FAFAFA;
+    --color-card-bg: #FFFFFF;
+    --color-text-main: #333333;
+    --color-text-secondary: #777777;
+    --color-primary: #81C784;    /* Пастельный зеленый */
+    --color-secondary: #FFCCBC;  /* Пастельный персик */
+    --color-accent: #90CAF9;     /* Пастельный голубой (для кнопок) */
+    --color-border: #E0E0E0;
+    --color-error: #F44336;
+    --color-success: #4CAF50;
+
     --padding-base: 15px;
     --margin-section: 20px;
-    --border-radius: 8px;
+    --border-radius: 12px;
 }
 
-/* Базовый сброс стилей */
+/* --- Базовый сброс --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: var(--color-bg-light); 
+    background-color: var(--color-bg-light);
+    color: var(--color-text-main);
+    line-height: 1.6;
 }
 
+/* --- Header --- */
 header {
     background-color: var(--color-card-bg);
-    padding: 10px var(--padding-base);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    padding: 10px 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
-    margin: 0;
     color: var(--color-primary);
+    font-size: 1.5rem;
 }
 
-/* Враппер, центрирующий основной контент и авторизацию */
+/* --- Врапперы контента --- */
 .main-content-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 80vh; /* Обеспечивает центрирование по высоте */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    min-height: calc(100vh - 80px);
+    padding: var(--margin-section);
 }
 
-/* Контейнер приложения (сам дашборд) */
 #app-container {
     display: flex;
     flex-direction: column;
     gap: var(--margin-section);
     width: 100%;
+    max-width: 1100px;
 }
 
-/* Стиль для всех карточек (блоков) */
-.card {
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    padding: var(--padding-base) 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Стили для верхнего ряда (Персонаж + Навыки) */
 .top-row {
     display: flex;
     gap: var(--margin-section);
 }
 
-/* Карточка персонажа и Навыков делят место */
-#character-card {
-    flex: 0 0 30%;
+.card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--padding-base) 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
-#skills-card {
-    flex: 1;
-}
-
-/* --- Стилизация Блока Персонажа --- */
+/* --- Стили Персонажа и Атрибутов --- */
 .char-header {
     display: flex;
     gap: 15px;
     align-items: center;
-    margin-bottom: var(--padding-base);
-    padding-bottom: var(--padding-base);
     border-bottom: 1px solid var(--color-border);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .char-avatar {
-    width: 60px;
-    height: 60px;
-    background-color: var(--color-border);
+    width: 50px;
+    height: 50px;
+    background: var(--color-border);
     border-radius: 50%;
-    flex-shrink: 0;
 }
 
-h2, h3 {
-    color: var(--color-text-main);
+.attribute-item, .skill-item {
+    margin-bottom: 12px;
 }
 
-/* Стиль для полосок характеристик (Атрибуты) */
-.attribute-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 0.9em;
-}
-
-.attribute-item label {
-    flex-basis: 35%;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-.progress-bar-container {
+.progress-bar-container, .xp-bar-container {
     height: 8px;
-    background-color: #F0F0F0;
+    background: #F0F0F0;
     border-radius: 4px;
     overflow: hidden;
-    flex-grow: 1;
-    margin: 0 8px;
-}
-.progress-bar {
-    height: 100%;
-    background-color: var(--color-primary);
-    transition: width 0.3s;
+    margin: 5px 0;
 }
 
-.stat-level {
-    flex-basis: 10%;
+.progress-bar { background-color: var(--color-primary); height: 100%; transition: 0.3s; }
+.xp-bar { background-color: var(--color-secondary); height: 100%; transition: 0.3s; }
+
+/* --- Управление Задачами (Форма) --- */
+#task-management {
     text-align: right;
+}
+
+#toggle-add-form-btn {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
     font-weight: bold;
-    color: var(--color-text-secondary);
+    transition: 0.2s;
 }
 
-/* Стиль для Монет (для динамической смены цвета) */
-.coins-negative {
-    color: var(--color-error); 
-    font-weight: bold;
-}
-.coins-positive {
-    color: var(--color-success); 
-    font-weight: bold;
+#toggle-add-form-btn:hover { background-color: #64B5F6; }
+
+#add-task-form-wrapper {
+    text-align: left;
+    background: #FAFAFA;
+    border: 1px dashed var(--color-border);
+    padding: 15px;
+    border-radius: var(--border-radius);
 }
 
-/* --- Стилизация Блока Навыков --- */
-#skills-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-#universal-skills, #specialized-skills {
-    padding-top: 5px;
-}
-
-#universal-skills h4, #specialized-skills h4 {
-    margin-bottom: 10px;
-    font-size: 1.1em;
-    border-bottom: 1px dashed var(--color-border);
-    padding-bottom: 5px;
-}
-
-.skill-item {
+#new-task-form {
     display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    font-size: 0.9em;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.skill-item label {
-    flex-basis: 30%;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-/* XP-бар в Навыках */
-.xp-bar-container {
-    height: 10px;
-    background-color: #EFEFEF;
-    border-radius: 5px;
-    overflow: hidden;
-    flex-grow: 1;
-    margin: 0 8px;
-}
-
-.xp-bar {
-    height: 100%;
-    background-color: var(--color-secondary); 
-    transition: width 0.3s;
-}
-
-.xp-level {
-    flex-basis: 20%;
-    text-align: right;
-    font-weight: bold;
-    color: var(--color-text-secondary);
-}
-
-/* --- Стили для Экрана Аутентификации --- */
-#auth-screen {
-    /* Эти стили обеспечивают, что auth-screen выглядит как главный экран, когда он активен */
-    width: 100%;
-}
-
-.auth-card {
-    max-width: 400px;
-    width: 100%;
-    padding: 30px;
-    text-align: center;
-}
-
-.auth-card h2 {
-    margin-bottom: 20px;
-    color: var(--color-primary);
-}
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-#auth-username, #auth-password {
-    padding: 12px;
+#task-title {
+    flex: 2;
+    padding: 10px;
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
-    font-size: 1em;
 }
 
-#auth-submit-btn {
-    padding: 12px;
-    background-color: var(--color-secondary); 
-    color: var(--color-text-main);
+#task-category-1 {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+#add-task-button {
+    background: var(--color-primary);
+    color: white;
     border: none;
+    padding: 10px 20px;
     border-radius: var(--border-radius);
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.2s;
 }
 
-#auth-submit-btn:hover {
-    background-color: #E6B6A5; 
+/* --- Список задач (Future) --- */
+#daily-tasks-list {
+    margin-top: 15px;
 }
 
-.error-message {
-    color: var(--color-error);
-    margin-top: 10px;
-    font-weight: bold;
+.placeholder-task {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
 }
 
-/* --- Медиа-запрос для мобильных --- */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid var(--color-border);
+    transition: 0.2s;
+}
+
+.task-item:hover { background: #FDFDFD; }
+
+.task-info { display: flex; flex-direction: column; }
+.task-cat { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; }
+
+.task-actions button {
+    background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 10px; opacity: 0.6;
+}
+
+.task-actions button:hover { opacity: 1; transform: scale(1.1); }
+
+/* Стиль для выполненной задачи */
+.task-done { opacity: 0.5; background: #f0f0f0; }
+.task-done strong { text-decoration: line-through; }
+
+/* --- Авторизация --- */
+#auth-screen { width: 100%; display: flex; justify-content: center; }
+.auth-card { max-width: 400px; width: 100%; padding: 40px; }
+#login-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+#auth-username, #auth-password { padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; }
+#auth-submit-btn { background: var(--color-primary); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.error-message { color: var(--color-error); font-size: 0.9rem; margin-top: 5px; }
+
+/* --- Адаптивность --- */
 @media (max-width: 800px) {
-    .top-row {
-        flex-direction: column;
-    }
-    #character-card {
-        flex: 1;
-    }
+    .top-row { flex-direction: column; }
+    #app-container { padding: 10px; }
 }
